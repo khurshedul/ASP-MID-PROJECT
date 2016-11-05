@@ -26,7 +26,7 @@ namespace MidAsp
             
             if (!IsPostBack)
             {
-                if (Cache["DATASET"] == null)
+                if (Cache["DATASET"] == null ||Cache["DATASET1"] == null || Cache["DATASET2"] == null||Cache["DATASET3"] == null)
                 {
                     this.Loaddata();
                 }
@@ -36,7 +36,30 @@ namespace MidAsp
                 }
             }
            // Response.Write(ds.Tables["dvd"].Rows[0]["dvdid"].ToString());
+            this.report();
 
+        }
+
+        private void report()
+        {
+            string connStr = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
+            SqlConnection conn = new SqlConnection(connStr);
+            string sql = "SELECT COUNT(DISTINCT rpid) FROM report";
+            string sql2 = "select userIds,email,dvdid,title,typemv,actor,categorymv,Date from report rp,users us,dvds dv,type tp,casting cas,category ct where rp.movieId=dv.dvdid and rp.userIds=us.userid and dv.typeid=tp.id and dv.castingId=cas.id and dv.categoryid=ct.id";
+            SqlDataAdapter adapter = new SqlDataAdapter(sql, conn);
+            SqlCommandBuilder builder = new SqlCommandBuilder(adapter);
+            SqlDataAdapter adapter2 = new SqlDataAdapter(sql2, conn);
+            SqlCommandBuilder builder2 = new SqlCommandBuilder(adapter2);
+            DataSet dst = new DataSet();
+            adapter.Fill(dst, "report");
+            adapter2.Fill(dst, "report2");
+            // ds.Tables["users"].PrimaryKey = new DataColumn[] { ds.Tables["Users"].Columns["id"] };
+            if (dst.Tables["report"].Rows.Count > 0)
+            {
+                mvreq.Text = dst.Tables["report"].Rows[0][0].ToString();
+            }
+            GridView1.DataSource = dst.Tables["report2"];
+            GridView1.DataBind();
 
         }
 
@@ -86,6 +109,18 @@ namespace MidAsp
             category.DataBind();
             casting.DataBind();
             type.DataBind();
+            DropDownListcat.DataSource = ds1.Tables["category"];
+            DropDownListcat.DataTextField = "categorymv";
+            DropDownListcat.DataValueField = "id";
+            DropDownListcat.DataBind();
+            DropDownListcast.DataSource = ds2.Tables["casting"];
+            DropDownListcast.DataTextField = "actor";
+            DropDownListcast.DataValueField = "id";
+            DropDownListcast.DataBind();
+            DropDownListtype.DataSource = ds3.Tables["type"];
+            DropDownListtype.DataTextField = "typemv";
+            DropDownListtype.DataValueField = "id";
+            DropDownListtype.DataBind();
           
         }
          private void LoadFrmCache()
@@ -102,6 +137,18 @@ namespace MidAsp
              category.DataBind();
              casting.DataBind();
              type.DataBind();
+             DropDownListcat.DataSource = ds1.Tables["category"];
+             DropDownListcat.DataTextField = "categorymv";
+             DropDownListcat.DataValueField = "id";
+             DropDownListcat.DataBind();
+             DropDownListcast.DataSource = ds2.Tables["casting"];
+             DropDownListcast.DataTextField = "actor";
+             DropDownListcast.DataValueField = "id";
+             DropDownListcast.DataBind();
+             DropDownListtype.DataSource = ds3.Tables["type"];
+             DropDownListtype.DataTextField = "typemv";
+             DropDownListtype.DataValueField = "id";
+             DropDownListtype.DataBind();
          }
        
         protected void GridView1_RowUpdating(object sender, GridViewUpdateEventArgs e)
@@ -122,6 +169,7 @@ namespace MidAsp
             // DataSet ds = (DataSet)Cache["DATASET"];
             SqlDataAdapter adapter = (SqlDataAdapter)Cache["ADAPTER"];
             adapter.Update(ds.Tables["dvd"]);
+            message.Text = "Updated successfully";
         }
 
       
@@ -135,6 +183,7 @@ namespace MidAsp
             this.LoadFrmCache();
             SqlDataAdapter adapter = (SqlDataAdapter)Cache["ADAPTER"];
             adapter.Update(ds.Tables["dvd"]);
+            message.Text = "Delated successfully";
         }
 
      
@@ -160,6 +209,7 @@ namespace MidAsp
             this.LoadFrmCache();
             SqlDataAdapter adapter = (SqlDataAdapter)Cache["ADAPTER2"];
             adapter.Update(ds.Tables["casting"]);
+            message.Text = "Delated successfully";
         }
 
         protected void casting_RowEditing(object sender, GridViewEditEventArgs e)
@@ -189,6 +239,7 @@ namespace MidAsp
             // DataSet ds = (DataSet)Cache["DATASET"];
             SqlDataAdapter adapter = (SqlDataAdapter)Cache["ADAPTER2"];
             adapter.Update(ds.Tables["casting"]);
+            message.Text = "Updated successfully";
         }
     
         protected void category_RowUpdating1(object sender, GridViewUpdateEventArgs e)
@@ -196,7 +247,7 @@ namespace MidAsp
             DataSet ds = (DataSet)Cache["DATASET1"];
             DataRow dr = ds.Tables["category"].Rows.Find(e.Keys["id"]);
             dr["id"] = e.NewValues["id"];
-            dr["category"] = e.NewValues["category"];
+            dr["categorymv"] = e.NewValues["categorymv"];
 
 
 
@@ -206,6 +257,7 @@ namespace MidAsp
             // DataSet ds = (DataSet)Cache["DATASET"];
             SqlDataAdapter adapter = (SqlDataAdapter)Cache["ADAPTER1"];
             adapter.Update(ds.Tables["category"]);
+            message.Text = "Updated successfully";
         }
 
         protected void category_RowDeleting(object sender, GridViewDeleteEventArgs e)
@@ -217,6 +269,7 @@ namespace MidAsp
             this.LoadFrmCache();
             SqlDataAdapter adapter = (SqlDataAdapter)Cache["ADAPTER1"];
             adapter.Update(ds.Tables["category"]);
+            message.Text = "Delated successfully";
         }
 
         protected void category_RowEditing(object sender, GridViewEditEventArgs e)
@@ -241,6 +294,7 @@ namespace MidAsp
             this.LoadFrmCache();
             SqlDataAdapter adapter = (SqlDataAdapter)Cache["ADAPTER3"];
             adapter.Update(ds.Tables["type"]);
+            message.Text = "Delated successfully";
         }
 
         protected void type_RowUpdating(object sender, GridViewUpdateEventArgs e)
@@ -248,7 +302,7 @@ namespace MidAsp
             DataSet ds = (DataSet)Cache["DATASET3"];
             DataRow dr = ds.Tables["type"].Rows.Find(e.Keys["id"]);
             dr["id"] = e.NewValues["id"];
-            dr["type"] = e.NewValues["type"];
+            dr["typemv"] = e.NewValues["typemv"];
 
 
 
@@ -258,6 +312,7 @@ namespace MidAsp
             // DataSet ds = (DataSet)Cache["DATASET"];
             SqlDataAdapter adapter = (SqlDataAdapter)Cache["ADAPTER3"];
             adapter.Update(ds.Tables["type"]);
+            message.Text = "Updated successfully";
         }
 
         protected void type_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
@@ -478,6 +533,88 @@ namespace MidAsp
         protected void casting_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        protected void Add_Click(object sender, EventArgs e)
+        {
+            DataSet ds = (DataSet)Cache["DATASET1"];
+            DataRow dr = ds.Tables["category"].NewRow();
+            dr["id"] = catID.Text;
+            dr["categorymv"] = categorytxt.Text;
+            Cache["DATASET1"] = ds;
+            //GridView1.EditIndex = -1;
+            //this.LoadFrmCache();
+            ds.Tables["category"].Rows.Add(dr);
+            // DataSet ds = (DataSet)Cache["DATASET"];
+            SqlDataAdapter adapter = (SqlDataAdapter)Cache["ADAPTER1"];
+            adapter.Update(ds.Tables["category"]);
+            this.LoadFrmCache();
+            MultiView1.ActiveViewIndex = 0;
+            catID.Text = categorytxt.Text = "";
+            message.Text = "Category added to database";
+        }
+
+        protected void Button43_Click(object sender, EventArgs e)
+        {
+
+            DataSet ds = (DataSet)Cache["DATASET3"];
+            DataRow dr = ds.Tables["type"].NewRow();
+            dr["id"] = typeid.Text;
+            dr["typemv"] = typetxt.Text;
+            Cache["DATASET3"] = ds;
+            //GridView1.EditIndex = -1;
+            //this.LoadFrmCache();
+            ds.Tables["type"].Rows.Add(dr);
+            // DataSet ds = (DataSet)Cache["DATASET"];
+            SqlDataAdapter adapter = (SqlDataAdapter)Cache["ADAPTER3"];
+            adapter.Update(ds.Tables["type"]);
+            this.LoadFrmCache();
+            MultiView1.ActiveViewIndex = 0;
+            typeid.Text = typetxt.Text = "";
+            message.Text = "Type added to database";
+        }
+
+        protected void castingbtn_Click(object sender, EventArgs e)
+        {
+            DataSet ds = (DataSet)Cache["DATASET2"];
+            DataRow dr = ds.Tables["casting"].NewRow();
+            dr["id"] = castid.Text;
+            dr["actor"] = casttxt.Text;
+            Cache["DATASET2"] = ds;
+            //GridView1.EditIndex = -1;
+            //this.LoadFrmCache();
+            ds.Tables["casting"].Rows.Add(dr);
+            // DataSet ds = (DataSet)Cache["DATASET"];
+            SqlDataAdapter adapter = (SqlDataAdapter)Cache["ADAPTER2"];
+            adapter.Update(ds.Tables["casting"]);
+            this.LoadFrmCache();
+            MultiView1.ActiveViewIndex = 0;
+            castid.Text = casttxt.Text = "";
+            message.Text = "actor added to database";
+        }
+
+        protected void addDvd_Click(object sender, EventArgs e)
+        {
+            DataSet ds = (DataSet)Cache["DATASET"];
+            DataRow dr = ds.Tables["dvd"].NewRow();
+            dr["dvdid"] = IDdvdi.Text;
+            dr["title"] = Titledvd.Text;
+            dr["description"] = Description.Text;
+            dr["castingId"] = DropDownListcast.SelectedValue;
+            dr["typeid"] = DropDownListtype.SelectedValue;
+            dr["categoryid"] = DropDownListcat.SelectedValue;
+            dr["Date"] = datedvdrel.Text;
+            Cache["DATASET"] = ds;
+            //GridView1.EditIndex = -1;
+            //this.LoadFrmCache();
+            ds.Tables["dvd"].Rows.Add(dr);
+            // DataSet ds = (DataSet)Cache["DATASET"];
+            SqlDataAdapter adapter = (SqlDataAdapter)Cache["ADAPTER"];
+            adapter.Update(ds.Tables["dvd"]);
+            this.LoadFrmCache();
+            MultiView1.ActiveViewIndex = 0;
+            IDdvdi.Text = Titledvd.Text = datedvdrel.Text  = "";
+            message.Text = "Dvd added to database";
         }
 
     }

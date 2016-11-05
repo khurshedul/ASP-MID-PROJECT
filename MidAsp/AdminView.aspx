@@ -1,4 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AdminView.aspx.cs" Inherits="MidAsp.AdminView" %>
+<%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="asp" %>
 
 <!DOCTYPE html>
 
@@ -20,6 +21,47 @@
         body {
     background-color: coral;
 }
+        .auto-style4 {
+            width: 364px;
+        }
+        .auto-style5 {
+            width: 364px;
+            height: 6px;
+        }
+        .auto-style6 {
+            height: 6px;
+        }
+        .auto-style7 {
+            width: 364px;
+            height: 197px;
+        }
+        .auto-style8 {
+            height: 197px;
+        }
+        .auto-style9 {
+            width: 389px;
+        }
+        .auto-style10 {
+            width: 488px;
+        }
+        .auto-style11 {
+            width: 390px;
+            height: 215px;
+        }
+        .auto-style12 {
+            width: 325px;
+            height: 215px;
+        }
+        .auto-style13 {
+            width: 429px;
+            height: 215px;
+        }
+        .auto-style14 {
+            width: 402px;
+        }
+        .auto-style15 {
+            width: 442px;
+        }
     </style>
 </head>
 <body>
@@ -48,11 +90,13 @@
 
                 </ul>
                 <center>
+                    <asp:Label ID="message" runat="server" EnableViewState="False"></asp:Label>
                     <br />
                     <center>
                     <table style="width:100%;">
                         <tr>
-                            <td class="auto-style1">
+                            <td class="auto-style11">
+                                &nbsp;&nbsp;&nbsp;&nbsp;
                                 <asp:GridView ID="casting" runat="server" AutoGenerateColumns="False" DataKeyNames="id" OnRowCancelingEdit="casting_RowCancelingEdit" OnRowDeleting="casting_RowDeleting" OnRowEditing="casting_RowEditing" OnRowUpdating="casting_RowUpdating" OnSelectedIndexChanged="casting_SelectedIndexChanged" BackColor="LightGoldenrodYellow" BorderColor="Tan" BorderWidth="1px" CellPadding="2" ForeColor="Black" GridLines="None">
                                     <AlternatingRowStyle BackColor="PaleGoldenrod" />
                                     <Columns>
@@ -70,12 +114,12 @@
                                     <SortedDescendingHeaderStyle BackColor="#C2A47B" />
                                 </asp:GridView>
                             </td>
-                            <td class="auto-style2">
+                            <td class="auto-style12">
                                 <asp:GridView ID="type" runat="server" AutoGenerateColumns="False" DataKeyNames="id" OnRowCancelingEdit="type_RowCancelingEdit" OnRowDeleting="type_RowDeleting" OnRowEditing="type_RowEditing" OnRowUpdating="type_RowUpdating" BackColor="LightGoldenrodYellow" BorderColor="Tan" BorderWidth="1px" CellPadding="2" ForeColor="Black" GridLines="None">
                                     <AlternatingRowStyle BackColor="PaleGoldenrod" />
                                     <Columns>
                                         <asp:BoundField DataField="id" HeaderText="ID" />
-                                        <asp:BoundField DataField="type" HeaderText="Type" />
+                                        <asp:BoundField DataField="typemv" HeaderText="Type" />
                                         <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
                                     </Columns>
                                     <FooterStyle BackColor="Tan" />
@@ -88,12 +132,12 @@
                                     <SortedDescendingHeaderStyle BackColor="#C2A47B" />
                                 </asp:GridView>
                             </td>
-                            <td class="auto-style3">
+                            <td class="auto-style13">
                                 <asp:GridView ID="category" runat="server" AutoGenerateColumns="False" DataKeyNames="id" OnRowCancelingEdit="category_RowCancelingEdit" OnRowDeleting="category_RowDeleting" OnRowEditing="category_RowEditing" OnRowUpdating="category_RowUpdating1" BackColor="LightGoldenrodYellow" BorderColor="Tan" BorderWidth="1px" CellPadding="2" ForeColor="Black" GridLines="None">
                                     <AlternatingRowStyle BackColor="PaleGoldenrod" />
                                     <Columns>
                                         <asp:BoundField DataField="id" HeaderText="ID" />
-                                        <asp:BoundField DataField="category" HeaderText="category" />
+                                        <asp:BoundField DataField="categorymv" HeaderText="category" />
                                         <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
                                     </Columns>
                                     <FooterStyle BackColor="Tan" />
@@ -108,12 +152,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="auto-style1">&nbsp;</td>
-                            <td class="auto-style2">&nbsp;</td>
-                            <td class="auto-style3">&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <td class="auto-style1">&nbsp;</td>
+                            <td class="auto-style1"></td>
                             <td class="auto-style2">&nbsp;</td>
                             <td class="auto-style3">&nbsp;</td>
                         </tr>
@@ -169,7 +208,70 @@
 
                     
 
+                    
+
+                    
+
                 </ul>
+                         &nbsp;<table aria-multiline="False" style="width: 100%; height: 114px;">
+                             <tr>
+                                 <td class="auto-style9"></td>
+                                 <td class="auto-style10">ID:<asp:TextBox ID="IDdvdi" runat="server"></asp:TextBox>
+                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Empty field" ControlToValidate="IDdvdi" Display="Dynamic" ValidationGroup="dvdadd">*</asp:RequiredFieldValidator>
+                                 </td>
+                                 <td></td>
+                             </tr>
+                             <tr>
+                                 <td class="auto-style9">&nbsp;</td>
+                                 <td class="auto-style10">Title:<asp:TextBox ID="Titledvd" runat="server"></asp:TextBox>
+                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Empty field" ControlToValidate="Titledvd" Display="Dynamic" ValidationGroup="dvdadd">*</asp:RequiredFieldValidator>
+                                 </td>
+                                 <td>&nbsp;</td>
+                             </tr>
+                             <tr>
+                                 <td class="auto-style9">&nbsp;</td>
+                                 <td class="auto-style10">Description:<asp:TextBox ID="Description" runat="server"></asp:TextBox>
+                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Empty field" ControlToValidate="Description" Display="Dynamic" ValidationGroup="dvdadd">*</asp:RequiredFieldValidator>
+                                 </td>
+                                 <td>&nbsp;</td>
+                             </tr>
+                             <tr>
+                                 <td class="auto-style9">&nbsp;</td>
+                                 <td class="auto-style10">Casting:<asp:DropDownList ID="DropDownListcast" runat="server">
+                                     </asp:DropDownList>
+                                 </td>
+                                 <td>&nbsp;</td>
+                             </tr><tr>
+                                 <td class="auto-style9">&nbsp;</td>
+                                 <td class="auto-style10">Type:<asp:DropDownList ID="DropDownListtype" runat="server">
+                                     </asp:DropDownList>
+                                 </td>
+                                 <td>&nbsp;</td>
+                             </tr><tr>
+                                 <td class="auto-style9">&nbsp;</td>
+                                 <td class="auto-style10">Category:<asp:DropDownList ID="DropDownListcat" runat="server">
+                                     </asp:DropDownList>
+                                 </td>
+                                 <td>&nbsp;</td>
+                             </tr><tr>
+                                 <td class="auto-style9">&nbsp;</td>
+                                 <td class="auto-style10">Date of release: <asp:TextBox ID="datedvdrel" runat="server" placeholder="YYYY-MM-DD"></asp:TextBox>
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="Empty field" ControlToValidate="datedvdrel" Display="Dynamic" ValidationGroup="dvdadd">*</asp:RequiredFieldValidator>
+        <asp:CalendarExtender ID="CalendarExtender2" runat="server"
+            TargetControlID="datedvdrel" PopupButtonID="dob" Format="yyyy-MM-dd" /></td>
+                                 <td>&nbsp;</td>
+                             </tr><tr>
+                                 <td class="auto-style9">&nbsp;</td>
+                                 <td class="auto-style10">
+                                     <asp:Button ID="addDvd" runat="server" Text="Add" ValidationGroup="dvdadd" OnClick="addDvd_Click" />
+                                     <asp:ValidationSummary ID="ValidationSummary1" ValidationGroup="dvdadd" runat="server" />
+                                 </td>
+                                 <td>&nbsp;</td>
+                             </tr>
+                         </table>
+
+
             </asp:View>
             <asp:View ID="View3" runat="server">
                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -192,6 +294,43 @@
                     <li class="manulist"></li>
 
                 </ul>
+                
+                        <table style="width: 100%; height: 472px;">
+            <tr>
+                <td class="auto-style5">&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
+                <td class="auto-style6">
+                </td>
+                <td class="auto-style6"></td>
+            </tr>
+            <tr>
+                <td class="auto-style7"></td>
+                <td class="auto-style8"> ID:
+                    <asp:TextBox ID="catID" runat="server"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="catID" Display="Dynamic" ErrorMessage="Empty field" ValidationGroup="cat">*</asp:RequiredFieldValidator>
+                    <br />
+                    Category:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <asp:TextBox ID="categorytxt" runat="server"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="categorytxt" Display="Dynamic" ErrorMessage="Empty Field" ValidationGroup="cat">*</asp:RequiredFieldValidator>
+                    <br />
+                   
+                   
+                    <br />
+                    <asp:Button ID="Add" runat="server" BackColor="#FF66FF" Text="Add" OnClick="Add_Click" ValidationGroup="cat" />
+                   
+                    <br />
+                    <asp:ValidationSummary ID="ValidationSummary2" runat="server" ValidationGroup="cat" />
+                   
+                </td>
+                <td class="auto-style8"></td>
+            </tr>
+            <tr>
+                <td class="auto-style4">&nbsp;</td>
+                <td>
+                    <br />
+                </td>
+                <td>&nbsp;</td>
+            </tr>
+        </table>
             </asp:View>
             <asp:View ID="View4" runat="server">
                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -214,6 +353,42 @@
                     <li class="manulist"></li>
 
                 </ul>
+                   <table style="width: 100%; height: 472px;">
+            <tr>
+                <td class="auto-style5">&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
+                <td class="auto-style6">
+                </td>
+                <td class="auto-style6"></td>
+            </tr>
+            <tr>
+                <td class="auto-style7"></td>
+                <td class="auto-style8"> Type ID:
+                    <asp:TextBox ID="typeid" runat="server"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="typeid" Display="Dynamic" ErrorMessage="Empty field" ValidationGroup="type">*</asp:RequiredFieldValidator>
+                    <br />
+                    type:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <asp:TextBox ID="typetxt" runat="server"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ControlToValidate="typetxt" Display="Dynamic" ErrorMessage="Empty field" ValidationGroup="type">*</asp:RequiredFieldValidator>
+                    <br />
+                   
+                   
+                    <br />
+                    <asp:Button ID="Button43" runat="server" BackColor="#FF66FF" Text="Add" OnClick="Button43_Click" ValidationGroup="type" />
+                   
+                    <br />
+                    <asp:ValidationSummary ID="ValidationSummary3" runat="server" ValidationGroup="type" />
+                   
+                </td>
+                <td class="auto-style8"></td>
+            </tr>
+            <tr>
+                <td class="auto-style4">&nbsp;</td>
+                <td>
+                    <br />
+                </td>
+                <td>&nbsp;</td>
+            </tr>
+        </table>
             </asp:View>
             <asp:View ID="View5" runat="server">
                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -236,6 +411,42 @@
                     <li class="manulist"></li>
 
                 </ul>
+                                 <table style="width: 100%; height: 472px;">
+            <tr>
+                <td class="auto-style5">&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
+                <td class="auto-style6">
+                </td>
+                <td class="auto-style6"></td>
+            </tr>
+            <tr>
+                <td class="auto-style7"></td>
+                <td class="auto-style8"> casting ID:
+                    <asp:TextBox ID="castid" runat="server"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ControlToValidate="castid" Display="Dynamic" ErrorMessage="Empty field" ValidationGroup="cast">*</asp:RequiredFieldValidator>
+                    <br />
+                    actor:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <asp:TextBox ID="casttxt" runat="server"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ControlToValidate="casttxt" Display="Dynamic" ErrorMessage="Empty field" ValidationGroup="cast">*</asp:RequiredFieldValidator>
+                    <br />
+                   
+                   
+                    <br />
+                    <asp:Button ID="castingbtn" runat="server" BackColor="#FF66FF" Text="Add" OnClick="castingbtn_Click" ValidationGroup="cast"  />
+                   
+                    <br />
+                    <asp:ValidationSummary ID="ValidationSummary4" runat="server" ValidationGroup="cast" />
+                   
+                </td>
+                <td class="auto-style8"></td>
+            </tr>
+            <tr>
+                <td class="auto-style4">&nbsp;</td>
+                <td>
+                    <br />
+                </td>
+                <td>&nbsp;</td>
+            </tr>
+        </table>
             </asp:View>
                   <asp:View ID="View6" runat="server">
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -257,7 +468,39 @@
 
                     <li class="manulist"></li>
 
+              
+
                 </ul>
+                            <table style="width:100%;">
+                        <tr>
+                            <td class="auto-style14">&nbsp;</td>
+                            <td class="auto-style15">Total Dvd Requests:<asp:Label ID="mvreq" runat="server"></asp:Label>
+                            </td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td class="auto-style14">&nbsp;</td>
+                            <td class="auto-style15">
+                                <asp:GridView ID="GridView1" runat="server" BackColor="LightGoldenrodYellow" BorderColor="Tan" BorderWidth="1px" CellPadding="2" ForeColor="Black" GridLines="None" Width="437px">
+                                    <AlternatingRowStyle BackColor="PaleGoldenrod" />
+                                    <FooterStyle BackColor="Tan" />
+                                    <HeaderStyle BackColor="Tan" Font-Bold="True" />
+                                    <PagerStyle BackColor="PaleGoldenrod" ForeColor="DarkSlateBlue" HorizontalAlign="Center" />
+                                    <SelectedRowStyle BackColor="DarkSlateBlue" ForeColor="GhostWhite" />
+                                    <SortedAscendingCellStyle BackColor="#FAFAE7" />
+                                    <SortedAscendingHeaderStyle BackColor="#DAC09E" />
+                                    <SortedDescendingCellStyle BackColor="#E1DB9C" />
+                                    <SortedDescendingHeaderStyle BackColor="#C2A47B" />
+                                </asp:GridView>
+                            </td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td class="auto-style14">&nbsp;</td>
+                            <td class="auto-style15">&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                    </table>
             </asp:View>
         </asp:MultiView>
     </div>

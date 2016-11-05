@@ -33,7 +33,7 @@ namespace MidAsp
             {
                 user = ds.Tables["users"].Rows[0]["type"].ToString();
                 // Response.Write(user);
-
+                string userid = ds.Tables["users"].Rows[0]["userid"].ToString();
                 if (user.Equals("admin"))
                 {
                     Session["type"]=user;
@@ -41,6 +41,7 @@ namespace MidAsp
                 }
                 else if (user.Equals("user"))
                 {
+                    Session["userid"] = userid;
                     Session["type"] = user;
                     Response.Redirect("~/UserView.aspx");
                 }
